@@ -25,8 +25,6 @@ function applyBodyDiff() {
   global.removeEventListener("load", applyBodyDiff);
 }
 
-global.addEventListener("load", applyBodyDiff);
-
 // Turbolinks calls `replaceChild` on the document element when an update should
 // occur. Monkeypatch the method so Turbolinks can be used without modification.
 global.document.documentElement.replaceChild = Reactize.applyDiff;
