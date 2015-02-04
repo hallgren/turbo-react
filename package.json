@@ -21,10 +21,8 @@
   },
   "homepage": "https://github.com/ssorallen/turbo-react",
   "dependencies": {
-    "htmltojsx": "^0.2.0",
-    "react": "^0.12.2",
-    "react-tools": "^0.12.2",
-    "turbolinks": "git://github.com/ssorallen/turbolinks"
+    "virtual-dom": "",
+    "html-to-vdom ": ""
   },
   "devDependencies": {
     "coffee-loader": "^0.7.2",

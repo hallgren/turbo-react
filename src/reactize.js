@@ -1,27 +1,31 @@
-require("turbolinks");
+var createElement = require('virtual-dom/create-element');
+var diff = require('virtual-dom/diff');
+var patch = require('virtual-dom/patch');
 
-var HTMLtoJSX = require("htmltojsx");
-var JSXTransformer = require("react-tools");
-var React = require("react");
+var VNode = require('virtual-dom/vnode/vnode');
+var VText = require('virtual-dom/vnode/vtext');
+var convertHTML = require('html-to-vdom')({
+    VNode: VNode,
+    VText: VText
+});
+
 
 var Reactize = {
-  version: "0.4.1"
-};
-
-var converter = new HTMLtoJSX({createClass: false});
-
-Reactize.reactize = function(element) {
-  var code = JSXTransformer.transform(converter.convert(element.innerHTML));
-  return eval(code);
+  version: "0.5.0"
 };
 
 Reactize.applyDiff = function(replacementElement, targetElement) {
-  var bod = Reactize.reactize(replacementElement);
-  React.render(bod, targetElement);
+  var replacementVtree = convertHTML(replacementElement.outerHTML.trim());
+  var targetVtree = convertHTML(targetElement.outerHTML.trim());
+
+  var patches = diff(targetVtree, replacementVtree);
+  targetElement = patch(targetElement, patches);
 };
 
 function applyBodyDiff() {
-  Reactize.applyDiff(document.body, document.body);
+  var initialVtree = convertHTML(document.body.innerHTML.trim());
+  var rootNode = createElement(initialVtree);
+  document.body.innerHTML = rootNode.outerHTML;
   global.removeEventListener("load", applyBodyDiff);
 }
 
