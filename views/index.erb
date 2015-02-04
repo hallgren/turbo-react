@@ -39,7 +39,7 @@
             Requested at <%= @request_time.strftime("%Y-%m-%d %H:%M:%S") %>
           </p>
           <form>
-            <input type="submit" value="<%= @request_time.strftime("%Y-%m-%d %H:%M:%S") %>"/>
+            <input type="submit" value="<%= @request_time.strftime("%Y-%m-%d %H:%M:%S") %>"/><span> The &lt;input type="submit"/&gt; updates its value on re-requests =)</span>
           </form>
 
           <h3>What it's doing</h3>
@@ -57,15 +57,8 @@
 
           <h3>The Code</h3>
           <p>
-            Reactize creates a virtual-dom of the <code>body</code> element: <a href="https://github.com/ssorallen/turbo-react/blob/master/src/reactize.js">reactize.js</a>
-          </p>
-          <p>
-            Reactize is hooked into
-            Turbolinks: <a href="https://github.com/ssorallen/turbo-react/blob/master/src/reactize.js#L32">reactize.js#32</a>
-          </p>
-          <p>
             This whole app is on
-            GitHub: <a href="https://github.com/ssorallen/turbo-react/">turbo-react</a>
+            GitHub: <a href="https://github.com/hallgren/turbo-react/tree/virtual-dom">turbo-react</a>
           </p>
 
           <h3>Feedback</h3>
