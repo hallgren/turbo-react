@@ -14443,6 +14443,7 @@ var convertHTML = require('html-to-vdom')({
     VText: VText
 });
 
+var bodyVTree = {};
 
 var Reactize = {
   version: "0.5.0"
@@ -14450,16 +14451,18 @@ var Reactize = {
 
 Reactize.applyDiff = function(replacementElement, targetElement) {
   var replacementVtree = convertHTML(replacementElement.outerHTML.trim());
-  var targetVtree = convertHTML(targetElement.outerHTML.trim());
+  //var targetVtree = convertHTML(targetElement.outerHTML.trim());
 
-  var patches = diff(targetVtree, replacementVtree);
+  var patches = diff(bodyVTree, replacementVtree);
   targetElement = patch(targetElement, patches);
+  bodyVTree = replacementVtree;
 };
 
 function applyBodyDiff() {
-  var initialVtree = convertHTML(document.body.innerHTML.trim());
-  var rootNode = createElement(initialVtree);
-  document.body.innerHTML = rootNode.outerHTML;
+  //debugger;
+  bodyVTree = convertHTML(document.body.outerHTML.trim());
+  //var rootNode = createElement(bodyVTree);
+  //document.body.outerHTML = rootNode.outerHTML;
   global.removeEventListener("load", applyBodyDiff);
 }
 
