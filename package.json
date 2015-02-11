@@ -23,10 +23,5 @@
   "dependencies": {
     "virtual-dom": "",
     "html-to-vdom ": ""
-  },
-  "devDependencies": {
-    "coffee-loader": "^0.7.2",
-    "coffee-script": "^1.8.0",
-    "webpack": "^1.4.15"
   }
 }

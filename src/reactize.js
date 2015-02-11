@@ -1,3 +1,5 @@
+var turbolinks = require('./turbolinks.js');
+
 var diff = require('virtual-dom/diff');
 var patch = require('virtual-dom/patch');
 
